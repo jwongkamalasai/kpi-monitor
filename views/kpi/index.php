@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('เพิ่มตัวชี้วัด', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php  echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -32,6 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'kpi_template:ntext',
             'kpi_taget',
             'kpi_result',
+            'kpi_owner',
             //'kpi_flag',
             //'kpi_start_date',
             //'kpi_end_date',

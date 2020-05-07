@@ -15,19 +15,13 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'activity_id') ?>
-
-    <?= $form->field($model, 'kpi_id') ?>
-
     <?= $form->field($model, 'activity_name') ?>
 
-    <?= $form->field($model, 'activity_detail') ?>
-
-    <?= $form->field($model, 'activity_start_date') ?>
+    <?php // $form->field($model, 'activity_start_date') ?>
 
     <?php // echo $form->field($model, 'activity_end_date') ?>
 
-    <?php // echo $form->field($model, 'activity_status') ?>
+    <?= $form->field($model, 'activity_status')->radioList([ 1 => 'ดำเนินการ', 0 => 'ยังไม่ดำเนินการ', 9 => 'ดำเนินการเสร็จสิ้น' ], ['prompt' => '']) ?>
 
     <?php // echo $form->field($model, 'activity_color') ?>
 

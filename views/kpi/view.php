@@ -39,6 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'kpi_start_date',
             'kpi_end_date',
             'kpi_process_date',
+            'kpi_owner',
             'kpi_color',
             'd_update',
         ],

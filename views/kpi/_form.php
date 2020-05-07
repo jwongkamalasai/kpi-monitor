@@ -23,6 +23,8 @@ $type = ArrayHelper::map(Type::find()->all(), 'kpi_type_id', 'kpi_type_name');
 
     <?= $form->field($model, 'kpi_template')->textarea(['rows' => 6]) ?>
 
+    <?= $form->field($model, 'kpi_owner')->textInput(['maxlength' => true]) ?>
+
     <?= $form->field($model, 'kpi_taget')->textInput() ?>
 
     <?= $form->field($model, 'kpi_result')->textInput() ?>

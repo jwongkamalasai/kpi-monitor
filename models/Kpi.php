@@ -35,7 +35,7 @@ class Kpi extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['kpi_template', 'kpi_flag'], 'string'],
+            [['kpi_template', 'kpi_flag','kpi_owner'], 'string'],
             [['kpi_taget', 'kpi_result'], 'number'],
             [['kpi_type_id'],'integer'],
             [['kpi_start_date', 'kpi_end_date', 'kpi_process_date', 'd_update'], 'safe'],
@@ -59,6 +59,7 @@ class Kpi extends \yii\db\ActiveRecord
             'kpi_start_date' => 'วันที่เริ่มต้น',
             'kpi_end_date' => 'วันสุดท้าย',
             'kpi_process_date' => 'วันประมวลผล',
+            'kpi_owner' => 'ผู้รับผิดชอบตัวชี้วัด',
             'kpi_color' => 'สีตัวชี้วัด',
             'd_update' => 'วันปรับปรุงข้อมูล',
         ];

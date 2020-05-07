@@ -18,7 +18,7 @@ class KpiSearch extends Kpi
     {
         return [
             [['kpi_id','kpi_type_id'], 'integer'],
-            [['kpi_name', 'kpi_template', 'kpi_flag', 'kpi_start_date', 'kpi_end_date', 'kpi_process_date', 'kpi_color', 'd_update'], 'safe'],
+            [['kpi_name', 'kpi_template','kpi_owner' , 'kpi_flag', 'kpi_start_date', 'kpi_end_date', 'kpi_process_date', 'kpi_color', 'd_update'], 'safe'],
             [['kpi_taget', 'kpi_result'], 'number'],
         ];
     }
@@ -71,6 +71,7 @@ class KpiSearch extends Kpi
 
         $query->andFilterWhere(['like', 'kpi_name', $this->kpi_name])
             ->andFilterWhere(['like', 'kpi_template', $this->kpi_template])
+            ->andFilterWhere(['like', 'kpi_owner', $this->kpi_owner])
             ->andFilterWhere(['like', 'kpi_flag', $this->kpi_flag])
             ->andFilterWhere(['like', 'kpi_color', $this->kpi_color]);
 
