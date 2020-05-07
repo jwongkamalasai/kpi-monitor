@@ -44,11 +44,16 @@ class Report extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'kpi_id' => 'Kpi ID',
-            'kpi_date_report' => 'Kpi Date Report',
-            'kpi_result' => 'Kpi Result',
-            'kpi_comment' => 'Kpi Comment',
-            'd_update' => 'D Update',
+            'kpi_id' => 'KPI ID',
+            'kpi_date_report' => 'วันที่รายงานตัวชี้วัด',
+            'kpi_result' => 'ผลงานตัวชี้วัด',
+            'kpi_comment' => 'หมายเหตุ',
+            'd_update' => 'วันที่ปรับปรุงข้อมูล',
         ];
     }
+
+    public function getKpi(){
+        return $this->hasOne(Kpi::className(), ['kpi_id' => 'kpi_id']);
+    }
+   
 }

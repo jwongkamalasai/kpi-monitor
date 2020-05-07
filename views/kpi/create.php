@@ -3,13 +3,13 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Activity */
+/* @var $model app\models\Kpi */
 
-$this->title = 'เพิ่มกิจกรรม';
-$this->params['breadcrumbs'][] = ['label' => 'กิจกรรม', 'url' => ['index']];
+$this->title = 'เพิ่มตัวชี้วัด';
+$this->params['breadcrumbs'][] = ['label' => 'ตัวชี้วัด', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="activity-create">
+<div class="kpi-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

@@ -39,8 +39,10 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
+            ['label' => 'ตัวชี้วัด', 'url' => ['/kpi/index']],
+            ['label' => 'กิจกรรม', 'url' => ['/activity/index']],
+            ['label' => 'รายงานตัวชี้วัด', 'url' => ['/report/index']],
+            ['label' => 'ตั้งค่าประเภทตัวชี้วัด', 'url' => ['/type/index']],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (

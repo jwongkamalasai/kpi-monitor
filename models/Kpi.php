@@ -37,6 +37,7 @@ class Kpi extends \yii\db\ActiveRecord
         return [
             [['kpi_template', 'kpi_flag'], 'string'],
             [['kpi_taget', 'kpi_result'], 'number'],
+            [['kpi_type_id'],'integer'],
             [['kpi_start_date', 'kpi_end_date', 'kpi_process_date', 'd_update'], 'safe'],
             [['kpi_name', 'kpi_color'], 'string', 'max' => 255],
         ];
@@ -48,17 +49,27 @@ class Kpi extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'kpi_id' => 'Kpi ID',
-            'kpi_name' => 'Kpi Name',
-            'kpi_template' => 'Kpi Template',
-            'kpi_taget' => 'Kpi Taget',
-            'kpi_result' => 'Kpi Result',
-            'kpi_flag' => 'Kpi Flag',
-            'kpi_start_date' => 'Kpi Start Date',
-            'kpi_end_date' => 'Kpi End Date',
-            'kpi_process_date' => 'Kpi Process Date',
-            'kpi_color' => 'Kpi Color',
-            'd_update' => 'D Update',
+            'kpi_id' => 'ID',
+            'kpi_name' => 'ตัวชี้วัด',
+            'kpi_type_id' => 'ประเภทตัวชี้วัด',
+            'kpi_template' => 'Template',
+            'kpi_taget' => 'เป้าหมาย',
+            'kpi_result' => 'ผลงาน',
+            'kpi_flag' => 'สถานะ',
+            'kpi_start_date' => 'วันที่เริ่มต้น',
+            'kpi_end_date' => 'วันสุดท้าย',
+            'kpi_process_date' => 'วันประมวลผล',
+            'kpi_color' => 'สีตัวชี้วัด',
+            'd_update' => 'วันปรับปรุงข้อมูล',
         ];
     }
+
+    public function getActivity(){
+        return $this->hasMany(Activity::className(), ['kpi_id' => 'kpi_id']);
+    }
+
+    public function getType(){
+        return $this->hasOne(Type::className(), ['kpi_type_id' => 'kpi_type_id']);
+    }
+
 }

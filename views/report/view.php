@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\Report */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Reports', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'รายงานผล', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'kpi_id',
+            'kpi.kpi_name',
             'kpi_date_report',
             'kpi_result',
             'kpi_comment:ntext',

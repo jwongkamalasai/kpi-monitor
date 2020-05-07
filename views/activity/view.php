@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\Activity */
 
 $this->title = $model->activity_id;
-$this->params['breadcrumbs'][] = ['label' => 'Activities', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'กิจกรรม', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
@@ -16,11 +16,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->activity_id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->activity_id], [
+        <?= Html::a('แก้ไข', ['update', 'id' => $model->activity_id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('ลบ', ['delete', 'id' => $model->activity_id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'ต้องการลบรายการ '.$model->activity_name.' ใช่หรือไม่ ?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'activity_id',
-            'kpi_id',
+            'kpi.kpi_name',
             'activity_name',
             'activity_detail:ntext',
             'activity_start_date',

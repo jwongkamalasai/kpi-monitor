@@ -4,18 +4,18 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\ReportSearch */
+/* @var $searchModel app\models\KpiSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'รายงานผลตัวชี้วัด';
+$this->title = 'ตัวชี้วัด';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="report-index">
+<div class="kpi-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('รายงานตัวชี้วัด', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('เพิ่มตัวชี้วัด', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -26,11 +26,17 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            // 'id',
-            'kpi.kpi_name',
-            'kpi_date_report',
+            'kpi_id',
+            'type.kpi_type_name',
+            'kpi_name',
+            'kpi_template:ntext',
+            'kpi_taget',
             'kpi_result',
-            'kpi_comment:ntext',
+            //'kpi_flag',
+            //'kpi_start_date',
+            //'kpi_end_date',
+            //'kpi_process_date',
+            //'kpi_color',
             //'d_update',
 
             ['class' => 'yii\grid\ActionColumn'],

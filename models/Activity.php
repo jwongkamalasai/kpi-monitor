@@ -46,15 +46,19 @@ class Activity extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'activity_id' => 'Activity ID',
-            'kpi_id' => 'Kpi ID',
-            'activity_name' => 'Activity Name',
-            'activity_detail' => 'Activity Detail',
-            'activity_start_date' => 'Activity Start Date',
-            'activity_end_date' => 'Activity End Date',
-            'activity_status' => 'Activity Status',
-            'activity_color' => 'Activity Color',
-            'd_update' => 'D Update',
+            'activity_id' => 'ID',
+            'kpi_id' => 'KPI ID',
+            'activity_name' => 'กิจกรรม',
+            'activity_detail' => 'รายละเอียดกิจกรรม',
+            'activity_start_date' => 'วันที่เริ่มกิจกรรม',
+            'activity_end_date' => 'วันสิ้นสุดกิจกรรม',
+            'activity_status' => 'สถานะกิจกรรม',
+            'activity_color' => 'สีกิจกรรม',
+            'd_update' => 'วันปรับปรุงข้อมูล',
         ];
+    }
+
+    public function getKpi(){
+        return $this->hasOne(Kpi::className(), ['kpi_id' => 'kpi_id']);
     }
 }
