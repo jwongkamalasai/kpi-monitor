@@ -1,53 +1,43 @@
 <?php
+use app\models\Kpi;
+use app\models\Activity;
 
+$kpi = Kpi::find()->select('kpi_id as id,kpi_name as title')->asArray()->all();
+$events = Activity::find()->select('activity_id as id,kpi_id as resourceId,activity_start_date as start,activity_end_date as end,activity_name as title,activity_color as color')->asArray()->all();
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+$this->title = 'KPI Monitoring';
 ?>
 <div class="site-index">
-
-    <div class="jumbotron">
-        <h1>Congratulations!</h1>
-
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
-    </div>
-
-    <div class="body-content">
-
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
-            </div>
-        </div>
-
-    </div>
+<?= \edofre\fullcalendarscheduler\FullcalendarScheduler::widget([
+	'header'        => [
+//		'left'   => 'today prev,next',
+		'right'   => 'next',
+        'center' => 'title',
+//		'right'  => 'timelineDay,timelineThreeDays,agendaWeek,month',
+		'left'  => 'prev month,timelineHalf,timelineYear',
+],
+	'clientOptions' => [
+        'schedulerLicenseKey' => 'GPL-My-Project-Is-Open-Source',
+		'now'               => date('Y-m-d'),
+		'editable'          => false, // enable draggable events
+		'aspectRatio'       => 1.8,
+        'scrollTime'        => '08:00', // undo default 6am scrollTime
+        'timeFormat'        => 'HH:mm',
+        'slotDuration'      => [ 'month' => 1 ],
+		'defaultView'       => 'timelineYear',
+		'views'             => [
+			'timelineHalf' => [
+				'type'     => 'timeline',
+				'duration' => [
+					'month' => 6,
+				],
+			],
+		],
+		'resourceLabelText' => 'ตัวชี้วัด',
+		'resources'         => $kpi,
+        'events'            => $events,
+	],
+]);
+?>
 </div>
