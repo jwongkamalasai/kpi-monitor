@@ -5,6 +5,7 @@ use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use kartik\date\DatePicker;
 use app\models\Type;
+use kartik\file\FileInput;
 
 $type = ArrayHelper::map(Type::find()->all(), 'kpi_type_id', 'kpi_type_name');
 
@@ -23,11 +24,19 @@ $type = ArrayHelper::map(Type::find()->all(), 'kpi_type_id', 'kpi_type_name');
 
     <?= $form->field($model, 'kpi_template')->textarea(['rows' => 6]) ?>
 
+    <?= $form->field($model, 'kpi_file')->widget(FileInput::classname(), [
+        'options' => ['accept' => ['image/*','pdf']],
+    ]);?>
+
     <?= $form->field($model, 'kpi_owner')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'kpi_taget')->textInput() ?>
 
     <?= $form->field($model, 'kpi_result')->textInput() ?>
+
+    <?= $form->field($model, 'kpi_aim')->radioList([ 1 => 'มากดี', 0 => 'น้อยดี', ], ['prompt' => '']) ?>
+
+    <?= $form->field($model, 'kpi_rate')->textInput() ?>
 
     <?= $form->field($model, 'kpi_start_date')->widget(DatePicker::ClassName(),
     [

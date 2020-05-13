@@ -8,6 +8,9 @@ use app\models\KpiSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
+use yii\data\ActiveDataProvider;
+use yii\base\Exception;
 
 /**
  * KpiController implements the CRUD actions for Kpi model.
@@ -57,6 +60,18 @@ class KpiController extends Controller
         ]);
     }
 
+    // function return pdf 
+    public function actionPdf($id) {
+        $model = $this->findModel($id);
+    
+        // This will need to be the path relative to the root of your app.
+        $filePath = $model->uploadImageFolder;
+        // Might need to change '@app' for another alias
+        $completePath = Yii::getAlias($filePath.'/'.$model->kpi_file);
+    
+        return Yii::$app->response->sendFile($completePath, $model->kpi_file);
+    }
+
     /**
      * Creates a new Kpi model.
      * If creation is successful, the browser will be redirected to the 'view' page.
@@ -66,8 +81,20 @@ class KpiController extends Controller
     {
         $model = new Kpi();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->kpi_id]);
+        if($model->load(Yii::$app->request->post())){
+
+            try{
+                $model->kpi_file = UploadedFile::getInstance($model, 'kpi_file');
+                $model->kpi_file = $model->uploadImage(); //method return ชื่อไฟล์
+
+                $model->save();//บันทึกข้อมูล
+
+                Yii::$app->session->setFlash('success', 'บันทึกข้อมูลเรียบร้อย');
+                return $this->redirect(['view', 'id' => $model->kpi_id]);
+            }catch(Exception $e){
+                Yii::$app->session->setFlash('danger', 'มีข้อผิดพลาด');
+                return $this->redirect(['index']);
+            }
         }
 
         return $this->render('create', [
@@ -86,8 +113,20 @@ class KpiController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->kpi_id]);
+        if($model->load(Yii::$app->request->post())){
+
+            try{
+                $model->kpi_file = UploadedFile::getInstance($model, 'kpi_file');
+                $model->kpi_file = $model->uploadImage();//method return ชื่อไฟล์
+
+                $model->save();//บันทึกข้อมูล
+
+                Yii::$app->session->setFlash('success', 'บันทึกข้อมูลเรียบร้อย');
+                return $this->redirect(['view', 'id' => $model->kpi_id]);
+            }catch(Exception $e){
+                Yii::$app->session->setFlash('danger', 'มีข้อผิดพลาด');
+                return $this->redirect(['index']);
+            }
         }
 
         return $this->render('update', [
@@ -105,7 +144,6 @@ class KpiController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
-
         return $this->redirect(['index']);
     }
 

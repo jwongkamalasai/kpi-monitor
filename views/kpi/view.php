@@ -33,8 +33,27 @@ $this->params['breadcrumbs'][] = $this->title;
             'type.kpi_type_name',
             'kpi_name',
             'kpi_template:ntext',
+            [
+                'attribute' => 'kpi_file',
+                'format' => 'raw',
+                'value' => $model->kpi_file ? Html::img($model->getImage(), ['class' => 'img-responsive']) : null
+            ],
+            [
+                'attribute' => 'kpi_file',
+                'label' => '',
+                'format' => 'raw',
+                'value' => $model->kpi_file ? Html::a('Download', [
+                    'kpi/pdf',
+                    'id' => $model->kpi_id,
+                ], [
+                    'class' => 'btn btn-primary',
+                    'target' => '_blank',
+                ]): null,
+            ],
             'kpi_taget',
             'kpi_result',
+            'kpi_aim',
+            'kpi_rate',
             'kpi_flag',
             'kpi_start_date',
             'kpi_end_date',
