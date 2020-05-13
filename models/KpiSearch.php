@@ -18,7 +18,7 @@ class KpiSearch extends Kpi
     {
         return [
             [['kpi_id', 'kpi_type_id', 'kpi_rate'], 'integer'],
-            [['kpi_name', 'kpi_template', 'kpi_flag', 'kpi_start_date', 'kpi_end_date', 'kpi_process_date', 'kpi_owner', 'kpi_color', 'd_update', 'kpi_aim', 'kpi_file', 'kpi_file_path'], 'safe'],
+            [['kpi_name', 'kpi_template', 'kpi_flag', 'kpi_start_date', 'kpi_end_date', 'kpi_process_date', 'kpi_owner', 'kpi_color', 'd_update', 'kpi_aim', 'kpi_file'], 'safe'],
             [['kpi_taget', 'kpi_result'], 'number'],
         ];
     }
@@ -75,8 +75,7 @@ class KpiSearch extends Kpi
             ->andFilterWhere(['like', 'kpi_flag', $this->kpi_flag])
             ->andFilterWhere(['like', 'kpi_color', $this->kpi_color])
             ->andFilterWhere(['like', 'kpi_aim', $this->kpi_aim])
-            ->andFilterWhere(['like', 'kpi_file', $this->kpi_file])
-            ->andFilterWhere(['like', 'kpi_file_path', $this->kpi_file_path]);
+            ->andFilterWhere(['like', 'kpi_file', $this->kpi_file]);
         return $dataProvider;
     }
 }
