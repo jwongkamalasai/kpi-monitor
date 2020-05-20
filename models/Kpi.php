@@ -41,9 +41,9 @@ class Kpi extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['kpi_type_id', 'kpi_rate'], 'integer'],
+            [['kpi_type_id'], 'integer'],
             [['kpi_template', 'kpi_flag', 'kpi_aim'], 'string'],
-            [['kpi_taget', 'kpi_result'], 'number'],
+            [['kpi_taget', 'kpi_result', 'kpi_rate'], 'number'],
             [['kpi_start_date', 'kpi_end_date', 'kpi_process_date', 'd_update'], 'safe'],
             [['kpi_name', 'kpi_owner', 'kpi_color',], 'string', 'max' => 255],
             [['kpi_file',],'file' ,'extensions' => 'jpg, png, pdf'],

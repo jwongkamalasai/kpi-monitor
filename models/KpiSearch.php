@@ -17,9 +17,9 @@ class KpiSearch extends Kpi
     public function rules()
     {
         return [
-            [['kpi_id', 'kpi_type_id', 'kpi_rate'], 'integer'],
+            [['kpi_id', 'kpi_type_id'], 'integer'],
             [['kpi_name', 'kpi_template', 'kpi_flag', 'kpi_start_date', 'kpi_end_date', 'kpi_process_date', 'kpi_owner', 'kpi_color', 'd_update', 'kpi_aim', 'kpi_file'], 'safe'],
-            [['kpi_taget', 'kpi_result'], 'number'],
+            [['kpi_taget', 'kpi_result', 'kpi_rate'], 'number'],
         ];
     }
 
@@ -63,6 +63,7 @@ class KpiSearch extends Kpi
             'kpi_type_id' => $this->kpi_type_id,
             'kpi_taget' => $this->kpi_taget,
             'kpi_result' => $this->kpi_result,
+            'kpi_rate' => $this->kpi_rate,
             'kpi_start_date' => $this->kpi_start_date,
             'kpi_end_date' => $this->kpi_end_date,
             'kpi_process_date' => $this->kpi_process_date,
