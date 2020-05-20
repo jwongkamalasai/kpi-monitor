@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50565
 File Encoding         : 65001
 
-Date: 2020-05-07 16:07:20
+Date: 2020-05-20 08:14:07
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -58,8 +58,12 @@ CREATE TABLE `kpi` (
 `kpi_start_date`  date NULL DEFAULT NULL ,
 `kpi_end_date`  date NULL DEFAULT NULL ,
 `kpi_process_date`  date NULL DEFAULT NULL ,
+`kpi_owner`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
 `kpi_color`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
 `d_update`  timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP ,
+`kpi_aim`  enum('1','0') CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '1' ,
+`kpi_rate`  decimal(5,2) NULL DEFAULT NULL ,
+`kpi_file`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
 PRIMARY KEY (`kpi_id`)
 )
 ENGINE=InnoDB
@@ -110,7 +114,7 @@ PRIMARY KEY (`kpi_type_id`)
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
-AUTO_INCREMENT=4
+AUTO_INCREMENT=6
 
 ;
 
@@ -118,7 +122,7 @@ AUTO_INCREMENT=4
 -- Records of type
 -- ----------------------------
 BEGIN;
-INSERT INTO `type` VALUES ('1', 'QOF'), ('2', 'Ranking'), ('3', 'โครงการ');
+INSERT INTO `type` VALUES ('1', 'QOF'), ('2', 'Ranking'), ('3', 'โครงการ'), ('4', 'KPI'), ('5', 'Fee schedule');
 COMMIT;
 
 -- ----------------------------
@@ -139,4 +143,4 @@ ALTER TABLE `report` AUTO_INCREMENT=1;
 -- ----------------------------
 -- Auto increment value for `type`
 -- ----------------------------
-ALTER TABLE `type` AUTO_INCREMENT=4;
+ALTER TABLE `type` AUTO_INCREMENT=6;
