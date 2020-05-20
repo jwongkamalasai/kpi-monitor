@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\Report;
 use app\models\ReportSearch;
+use app\models\Kpi;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -67,6 +68,9 @@ class ReportController extends Controller
         $model = new Report();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $kpi = Kpi::findOne($model->kpi_id);
+            $kpi->kpi_result = $model->kpi_result;
+            $kpi->save(false);
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
