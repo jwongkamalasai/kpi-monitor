@@ -39,6 +39,7 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
+            ['label' => 'รายงาน', 'url' => ['/site/report']],
             ['label' => 'ตัวชี้วัด', 'url' => ['/kpi/index']],
             ['label' => 'กิจกรรม', 'url' => ['/activity/index']],
             ['label' => 'รายงานตัวชี้วัด', 'url' => ['/report/index']],

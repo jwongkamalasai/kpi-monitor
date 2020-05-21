@@ -6,7 +6,7 @@ use yii\helpers\ArrayHelper;
 use kartik\date\DatePicker;
 use app\models\Type;
 use kartik\file\FileInput;
-
+$yearbudget = ['2563'=>'2563','2564'=>'2564','2565'=>'2565'];
 $type = ArrayHelper::map(Type::find()->all(), 'kpi_type_id', 'kpi_type_name');
 
 /* @var $this yii\web\View */
@@ -19,6 +19,8 @@ $type = ArrayHelper::map(Type::find()->all(), 'kpi_type_id', 'kpi_type_name');
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'kpi_type_id')->dropDownList($type, ['prompt'=>'เลือกประเภทตัวชี้วัด']) ?>
+
+    <?= $form->field($model, 'kpi_yearbudget')->dropDownList($yearbudget, ['prompt'=>'ปีงบประมาณ']) ?>
 
     <?= $form->field($model, 'kpi_name')->textInput(['maxlength' => true]) ?>
 

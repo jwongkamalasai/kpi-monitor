@@ -41,7 +41,7 @@ class Kpi extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['kpi_type_id'], 'integer'],
+            [['kpi_type_id','kpi_yearbudget'], 'integer'],
             [['kpi_template', 'kpi_flag', 'kpi_aim'], 'string'],
             [['kpi_taget', 'kpi_result', 'kpi_rate'], 'number'],
             [['kpi_start_date', 'kpi_end_date', 'kpi_process_date', 'd_update'], 'safe'],
@@ -57,6 +57,7 @@ class Kpi extends \yii\db\ActiveRecord
     {
         return [
             'kpi_id' => 'ID',
+            'kpi_yearbudget' => 'ปีงบประมาณ',
             'kpi_name' => 'ตัวชี้วัด',
             'kpi_type_id' => 'ประเภทตัวชี้วัด',
             'kpi_template' => 'Template',

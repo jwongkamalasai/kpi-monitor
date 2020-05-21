@@ -9,6 +9,9 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\ReportKpiPass;
+use app\models\ReportKpiPassSearch;
+
 
 class SiteController extends Controller
 {
@@ -62,6 +65,21 @@ class SiteController extends Controller
     public function actionIndex()
     {
         return $this->render('index');
+    }
+
+    /**
+     * Lists all Report models.
+     * @return mixed
+     */
+    public function actionReport()
+    {
+        $searchModel = new ReportKpiPassSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('report', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
     }
 
     /**
