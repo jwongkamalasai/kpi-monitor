@@ -28,7 +28,7 @@ class ReportKpiPass extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['kpi_type_id', 'pass', 'not_pass','kpi_yearbudget'], 'integer'],
+            [['kpi_type_id', 'pass', 'not_pass','kpi_yearbudget','total'], 'integer'],
             [['kpi_type_name'], 'string', 'max' => 255],
         ];
     }
@@ -47,6 +47,7 @@ class ReportKpiPass extends \yii\db\ActiveRecord
             'kpi_type_id' => 'Kpi Type ID',
             'kpi_yearbudget' => 'ปีงบประมาณ',
             'kpi_type_name' => 'ประเภทตัวชี้วัด',
+            'total' => 'จำนวนตัวชี้วัด',
             'pass' => 'ผ่าน',
             'not_pass' => 'ไม่ผ่าน',
         ];

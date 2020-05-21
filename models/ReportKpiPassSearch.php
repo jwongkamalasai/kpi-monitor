@@ -17,7 +17,7 @@ class ReportKpiPassSearch extends ReportKpiPass
     public function rules()
     {
         return [
-            [['kpi_type_id', 'pass', 'not_pass','kpi_yearbudget'], 'integer'],
+            [['kpi_type_id', 'pass', 'not_pass','kpi_yearbudget','total'], 'integer'],
             [['kpi_type_name'], 'safe'],
         ];
     }
@@ -60,6 +60,7 @@ class ReportKpiPassSearch extends ReportKpiPass
         $query->andFilterWhere([
             'kpi_type_id' => $this->kpi_type_id,
             'kpi_yearbudget' => $this->kpi_yearbudget,
+            'total' => $this->total,
             'pass' => $this->pass,
             'not_pass' => $this->not_pass,
         ]);

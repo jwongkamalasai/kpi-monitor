@@ -23,6 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
             'kpi_yearbudget',
             'kpi_type_name',
+            'total',
             'pass',
             'not_pass',
         ],
