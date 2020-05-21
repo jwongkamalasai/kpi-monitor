@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50565
 File Encoding         : 65001
 
-Date: 2020-05-20 08:14:07
+Date: 2020-05-21 08:59:41
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -49,6 +49,7 @@ COMMIT;
 DROP TABLE IF EXISTS `kpi`;
 CREATE TABLE `kpi` (
 `kpi_id`  int(10) UNSIGNED NOT NULL AUTO_INCREMENT ,
+`kpi_yearbudget`  int(4) NULL DEFAULT NULL ,
 `kpi_type_id`  int(11) NULL DEFAULT NULL ,
 `kpi_name`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
 `kpi_template`  text CHARACTER SET utf8 COLLATE utf8_general_ci NULL ,
@@ -68,7 +69,7 @@ PRIMARY KEY (`kpi_id`)
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
-AUTO_INCREMENT=1
+AUTO_INCREMENT=3
 
 ;
 
@@ -76,6 +77,7 @@ AUTO_INCREMENT=1
 -- Records of kpi
 -- ----------------------------
 BEGIN;
+INSERT INTO `kpi` VALUES ('1', '2563', '1', 'ร้อยละของประชากรไทยอายุ 35-74 ปี ได้รับการคัดกรองเบาหวานโดยการตรวจวัดระดับน้ำตาลในเลือด ไม่น้อยกว่าร้อยละ 90', '', '90', '93.06', '1', '2020-04-01', '2021-03-31', '2021-05-10', 'NCD', 'Green', '2020-05-21 08:54:25', '1', '3.00', ''), ('2', '2563', '2', 'ร้อยละเด็กอายุ 0-5 ปีสูงดีสมส่วน ไม่น้อยกว่าร้อยละ 60', '', '60', '37.5', '0', '2019-10-01', '2020-09-30', '2020-10-12', 'PCU', 'red', '2020-05-21 08:54:31', '1', '0.00', '');
 COMMIT;
 
 -- ----------------------------
@@ -126,6 +128,12 @@ INSERT INTO `type` VALUES ('1', 'QOF'), ('2', 'Ranking'), ('3', 'โครงก
 COMMIT;
 
 -- ----------------------------
+-- View structure for `report_kpi_pass`
+-- ----------------------------
+DROP VIEW IF EXISTS `report_kpi_pass`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `report_kpi_pass` AS select `type`.`kpi_type_id` AS `kpi_type_id`,`kpi`.`kpi_yearbudget` AS `kpi_yearbudget`,`type`.`kpi_type_name` AS `kpi_type_name`,count((case `kpi`.`kpi_flag` when '1' then `kpi`.`kpi_id` end)) AS `pass`,count((case `kpi`.`kpi_flag` when '0' then `kpi`.`kpi_id` end)) AS `not_pass` from (`kpi` join `type` on((`kpi`.`kpi_type_id` = `type`.`kpi_type_id`))) group by `type`.`kpi_type_id`,`kpi`.`kpi_yearbudget` ;
+
+-- ----------------------------
 -- Auto increment value for `activity`
 -- ----------------------------
 ALTER TABLE `activity` AUTO_INCREMENT=1;
@@ -133,7 +141,7 @@ ALTER TABLE `activity` AUTO_INCREMENT=1;
 -- ----------------------------
 -- Auto increment value for `kpi`
 -- ----------------------------
-ALTER TABLE `kpi` AUTO_INCREMENT=1;
+ALTER TABLE `kpi` AUTO_INCREMENT=3;
 
 -- ----------------------------
 -- Auto increment value for `report`
