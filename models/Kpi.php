@@ -94,7 +94,11 @@ class Kpi extends \yii\db\ActiveRecord
                 if($this->isNewRecord){//ถ้าเป็นการเพิ่มใหม่ ให้ตั้งชื่อไฟล์ใหม่
                     $fileName = substr(md5(rand(1,1000).time()),0,15).'.'.$this->kpi_file->extension;//เลือกมา 15 อักษร .นามสกุล
                 }else{//ถ้าเป็นการ update ให้ใช้ชื่อเดิม
-                    $fileName = $this->getOldAttribute('kpi_file');
+                    if($this->getOldAttribute('kpi_file')){
+                        $fileName = $this->getOldAttribute('kpi_file');
+                    } else {
+                        $fileName = substr(md5(rand(1,1000).time()),0,15).'.'.$this->kpi_file->extension;//เลือกมา 15 อักษร .นามสกุล
+                    }
                 }
                 $this->kpi_file->saveAs(Yii::getAlias('@webroot').'/'.$this->uploadImageFolder.'/'.$fileName);
 
