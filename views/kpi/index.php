@@ -32,6 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'kpi_template:ntext',
             'kpi_taget',
             'kpi_result',
+            'kpi_rate',
             'kpi_owner',
             //'kpi_flag',
             //'kpi_start_date',
